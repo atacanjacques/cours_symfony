@@ -29,12 +29,12 @@ class PostController extends Controller
   }
 
   /**
-  * @Route("/{slug}/show", name="post_show")
+  * @Route("/show/{id}", name="post_show")
   * @Method({"GET"})
-  * @param Article $article
+  * @param Post $post
   * @return Response
   */
-  public function showAction()
+  public function showAction(Post $post)
   {
     return $this->render('post/show.html.twig', [
       'post' => $post
@@ -71,7 +71,7 @@ class PostController extends Controller
   }
 
   /**
-  * @Route("/update", name="post_new")
+  * @Route("/update/{id}", name="post_update")
   * @Method({"GET", "POST"})
   * @param Request $request
   * @return RedirectResponse|Response
@@ -89,7 +89,7 @@ class PostController extends Controller
 
       $this->addFlash('succes', "L'article {$post->getTitle()} à été modifié");
 
-      return $this->redirectToRoute('post_index', ['slug'] => $post);
+      return $this->redirectToRoute('post_index', ['slug' => $post]);
     }
 
     return $this->render('post/new.html.twig',[

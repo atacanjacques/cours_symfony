@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+Index Post
+
+<table>
+  <thead>
+    <td>id</td>
+    <td>title</td>
+    <td>createdAt</td>
+    <td>content</td>
+  </thead>
+  <tr>
+    <td>{{ post.id }}</td>
+    <td>{{ post.title }}</td>
+    <td>{{ post.createdAt|date('d-m-Y') }}</td>
+    <td>{{ post.content }}</td>
+  </tr>
+</table>
+
+{% endblock %}

@@ -10,6 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Post
 {
+  public function __construct()
+  {
+    $this->createdAt = new \Datetime();
+    $this->removed = false;
+  }
+
   /**
   * @var integer
   *
@@ -40,10 +46,13 @@ class Post
   */
   private $content;
 
-  public function __construct()
-  {
-    $this->createdAt = new \Datetime();
-  }
+  /**
+  * @var boolean
+  *
+  * @ORM\Column(type="boolean")
+  */
+  private $removed;
+
   /**
   * Get the value of Id
   *
@@ -113,6 +122,16 @@ class Post
   }
 
   /**
+  * Get the value of Removed
+  *
+  * @return boolean
+  */
+  public function getRemoved()
+  {
+    return $this->removed;
+  }
+
+  /**
   * Set the value of Content
   *
   * @param string content
@@ -125,5 +144,4 @@ class Post
 
     return $this;
   }
-
 }
